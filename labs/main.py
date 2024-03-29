@@ -1,12 +1,17 @@
 
 
+
+
 def update_LineFollowing():
 	pass
 
-
-
-
-
+potential_colors = [
+    ((10, 50, 50), (20, 255, 255),), #orange
+    ((100, 150, 50), (110, 255, 255)), #blue
+    ((40, 50, 50), (80, 255, 255)),  # The HSV range for the color green
+    ((170, 50, 50), (10, 255, 255)), #red
+    ((110,59,50), (165,255,255),) #purple
+]
 
 Class States(Enum):
 	"Idle" = 1
@@ -15,7 +20,7 @@ Class States(Enum):
 	"Slaloming"
 
 
-potential_colors = ar_solver.potential_colors
+#potential_colors = ar_solver.potential_colors
 
 right_counter = 0
 left_counter = 0

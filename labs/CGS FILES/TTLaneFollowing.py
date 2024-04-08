@@ -121,6 +121,9 @@ def computeAvg(Contours):
     if len(Contours) == 1:
         avg_contour_center = None
         correction = 1
+    elif len(contours) == 0:
+        avg_contour_center = None
+        correction = 0
         
     else:
         center_1 = rc_utils.get_contour_center(Contours[0])

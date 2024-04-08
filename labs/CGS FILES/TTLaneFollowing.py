@@ -125,8 +125,6 @@ def computeAvg(Contours):
     else:
         center_1 = rc_utils.get_contour_center(Contours[0])
         center_2 = rc_utils.get_contour_center(Contours[1])
-        print(center_1[0])
-        print(center_2[0])
         avg_contour_center = ((center_1[0] + center_2[0]) // 2, (center_1[1] + center_2[1]) // 2)
 
 

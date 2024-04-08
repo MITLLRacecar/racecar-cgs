@@ -18,10 +18,10 @@ from enum import Enum
 
 
 # Time trial functions from the guys.
-import TTLineFollowing as tt_Line
-import TTLaneFollowing as tt_Lane
-import TTWallFollowing as tt_Wall
-import TTConeSlaloming as tt_Cone
+import racecar-cgs-TTLineFollowing as tt_Line
+import racecar-cgs-TTLaneFollowing as tt_Lane
+import racecar-cgs-TTWallFollowing as tt_Wall
+import racecar-cgs-TTConeSlaloming as tt_Cone
 
 
 # Here we shall call our time trials:

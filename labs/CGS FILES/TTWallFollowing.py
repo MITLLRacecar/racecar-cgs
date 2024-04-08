@@ -49,11 +49,6 @@ def start():
 
 
 def update():
-    """
-    After start() is run, this function is run every frame until the back button
-    is pressed
-    """
-    # TODO: Follow the wall to the right of the car without hitting anything.
     scan = rc.lidar.get_samples()
     
     closest_point_index = rc_utils.get_lidar_closest_point(scan, (0, 180))
@@ -62,8 +57,8 @@ def update():
     
     #print(closest_point_left[1])
 
-    if closest_point_index[0] > 93: angle = 1
-    elif closest_point_index[0] < 87: angle = -1
+    if closest_point_index[0] > 90: angle = 1
+    elif closest_point_index[0] < 90: angle = -1
     #elif closest_point_left[0] > 350: angle = -1
     else: angle = (find_first_opening(scan) / 180)
 

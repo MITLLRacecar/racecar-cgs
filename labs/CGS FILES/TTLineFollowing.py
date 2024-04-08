@@ -90,7 +90,7 @@ def runLineFollowing(colorToFollow):
         angle = 2 * contour_center[1] - rc.camera.get_width()
         angle = angle / rc.camera.get_width()
 
-        speed = 0.8
+        speed = 1
 
         if contour_center[0] > rc.camera.get_height() * 4 // 5:
             speed = -0.8
@@ -98,6 +98,7 @@ def runLineFollowing(colorToFollow):
             speed = contour_center[0] - rc.camera.get_height() // 2
             speed /= rc.camera.get_height() // 2
             speed *= 0.8
+            speed += 0.2
 
     
     rc.drive.set_speed_angle(speed, angle)

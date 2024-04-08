@@ -37,6 +37,9 @@ ORANGE_contours = [None, None]
 PURPLE_contours = [None, None]
 
 avg_contour_center = None
+prevContourCenter = None
+
+correction = 1
 
 
 ########################################################################################
@@ -86,6 +89,14 @@ def runLaneFollowing(target_color):
 
         speed = -avg_contour_center[0] + rc.camera.get_height() * 3 // 4
         speed /= rc.camera.get_height() // 4
+
+    else:
+        avg_contour_center = prevContourCenter
+
+        if correction == 1:
+            speed *= 0.8
+        else:
+            speed *= 0.5
         
     if speed < -1:
         speed = -1
@@ -97,25 +108,19 @@ def runLaneFollowing(target_color):
         angle = 1
 
 
-    #rc.drive.set_speed_angle(speed, angle)
-    rc.drive.set_speed_angle(rc.controller.get_trigger(rc.controller.Trigger.RIGHT) - rc.controller.get_trigger(rc.controller.Trigger.LEFT), rc.controller.get_joystick(rc.controller.Joystick.LEFT)[0])
+    rc.drive.set_speed_angle(speed, angle)
+    #rc.drive.set_speed_angle(rc.controller.get_trigger(rc.controller.Trigger.RIGHT) - rc.controller.get_trigger(rc.controller.Trigger.LEFT), rc.controller.get_joystick(rc.controller.Joystick.LEFT)[0])
 
 
 
 
 def computeAvg(Contours):
-    
+    global correction
     global avg_contour_center
     
     if len(Contours) == 1:
-                       
-        center = rc_utils.get_contour_center(Contours[0])
-
-        if center[1] < rc.camera.get_width() / 2:
-            avg_contour_center = (center[0], (rc.camera.get_width() + center[1]) // 2)
-
-        else:
-            avg_contour_center = (center[0], center[1] // 2)
+        avg_contour_center = None
+        correction = 1
         
     else:
         center_1 = rc_utils.get_contour_center(Contours[0])
@@ -134,7 +139,6 @@ def update_contour():
     global ORANGE_contours
     global PURPLE_contours
     global minContourArea
-    global contourId
     global prevContourCenter
 
 

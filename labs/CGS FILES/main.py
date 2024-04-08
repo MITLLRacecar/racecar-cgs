@@ -138,7 +138,12 @@ def update():
 	
 	else:
 		updateWallFollowing()
+
 	
+	scan = rc.lidar.get_samples()
+	lidar_closest_in_safety = rc_utils.get_lidar_closest_point(scan, (270,90))
+	if lidar_closest_in_safety[1] < 10:
+    		rc.set_speed_angle(-1, 0)
 
 	#rc.drive.set_speed_angle(rc.controller.get_trigger(rc.controller.Trigger.RIGHT) - rc.controller.get_trigger(rc.controller.Trigger.LEFT), rc.controller.get_joystick(rc.controller.Joystick.LEFT)[0])
 

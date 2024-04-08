@@ -139,7 +139,6 @@ def update_contour():
     global PURPLE
     global ORANGE_contours
     global PURPLE_contours
-    global minContourArea
     global prevContourCenter
 
 
@@ -176,30 +175,14 @@ def update_contour():
 
 
         if PURPLE_contours is not [None, None] or ORANGE_contours is not [None, None]:
-            
-            print("OR: ", ORANGE_contours)
-            print("PUR:", PURPLE_contours)
-            
-
-            contourNum = 0
-            avg_contour_center = (0, 0)
-
-            if PURPLE_contours != [None, None]:
-                for contour in PURPLE_contours:
-                    contourNum += 1
-                    newCenter = rc_utils.get_contour_center(contour)
-                    avg_contour_center[0] += newCenter[0]
-                    avg_contour_center[1] += newCenter[1]
-
-            if ORANGE_contours != [None, None]:
-                for contour in ORANGE_contours:
-                    contourNum += 1
-                    newCenter = rc_utils.get_contour_center(contour)
-                    avg_contour_center[0] += newCenter[0]
-                    avg_contour_center[1] += newCenter[1]
-
-            avg_contour_center[0] /= contourNum
-            avg_contour_center[1] /= contourNum
+            if targetColor == "Orange":
+                computeAvg(ORANGE_contours)
+                if avg_contour_center == None:
+                    computeAvg(PURPLE_contours)
+            elif targetColor == "Purple":
+                computeAvg(PURPLE_contours)
+                if avg_contour_center == None:
+                    computeAvg(ORANGE_contours)
         else:
             avg_contour_center = None
 

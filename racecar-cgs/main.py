@@ -175,7 +175,7 @@ def main():
 	global left_counter
 	global right_counter
 
-	#ar_markers = ar_solver.get_markers_info()
+	ar_markers = ar_solver.get_markers_info()
 	ar_markers = []
 	#print(ar_markers)
 
